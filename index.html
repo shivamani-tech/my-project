@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b1728" />
+  <title>DocDash — QueueZero Clinic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="DocDash home">
+        <span class="brand-mark">+</span><span>doc<span class="brand-light">dash</span></span>
+      </a>
+      <div class="workspace-label">WORKSPACE</div>
+      <button class="nav-item active" data-view="patient"><span class="nav-icon">◉</span> Patient dashboard</button>
+      <button class="nav-item" data-view="doctor"><span class="nav-icon">▦</span> Doctor console</button>
+      <button class="nav-item" data-view="board"><span class="nav-icon">▤</span> Live queue board</button>
+      <button class="nav-item" data-view="bookings"><span class="nav-icon">▣</span> Booked patients</button>
+      <div class="sidebar-bottom">
+        <div class="help-card">
+          <div class="help-icon">✦</div>
+          <strong>Care without the wait.</strong>
+          <p>Track your place in line and spend less time in the waiting room.</p>
+        </div>
+        <div class="profile">
+          <div class="avatar">PA</div>
+          <div><strong>Patient A</strong><small>Demo account</small></div>
+          <span class="profile-dots">•••</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div>
+          <div class="eyebrow">WEDNESDAY, NOVEMBER 18, 2026</div>
+          <h1 id="page-title">Good evening, Patient A <span class="wave">✦</span></h1>
+        </div>
+        <div class="top-actions">
+          <span class="live-pill"><i></i> LIVE UPDATES</span>
+          <button class="icon-button" title="Notifications" aria-label="Notifications">♧<b></b></button>
+          <div class="top-avatar">PA</div>
+        </div>
+      </header>
+
+      <section id="patient-view" class="view active-view">
+        <div class="welcome-row">
+          <div><p class="muted">YOUR VISIT AT A GLANCE</p><h2>Your appointment</h2></div>
+          <span class="date-chip">◷ &nbsp; Today · Evening OPD</span>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-content">
+            <div class="hero-topline"><span class="status-dot"></span> YOUR TOKEN IS ACTIVE <span class="hero-tag">CARDIOLOGY</span></div>
+            <div class="token-label">YOUR TOKEN NUMBER</div>
+            <div class="token-number" id="patient-token">#14</div>
+            <div class="doctor-line"><div class="doctor-avatar">DM</div><div><strong>Dr. Mehta</strong><span>Cardiology · DocDash Heart Clinic</span></div></div>
+          </div>
+          <div class="hero-side">
+            <div class="wait-label">ESTIMATED WAIT TIME</div>
+            <div class="wait-number"><span id="patient-wait">36</span><small>min</small></div>
+            <div class="wait-foot">Based on live consultation pace</div>
+            <div class="progress-track"><div id="progress-bar" class="progress-fill" style="width:42%"></div></div>
+            <div class="progress-caption"><span>Queue progress</span><strong id="progress-text">58% to go</strong></div>
+          </div>
+          <div class="hero-decoration decor-one"></div><div class="hero-decoration decor-two"></div>
+        </div>
+
+        <div id="arrival-alert" class="arrival-alert">
+          <div class="alert-icon">!</div>
+          <div><strong>Please arrive at the clinic now!</strong><span>You are just 2 patients away. Keep your phone handy.</span></div>
+          <button id="dismiss-alert" aria-label="Dismiss alert">×</button>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-top"><span>NOW SERVING</span><span class="stat-icon blue">↗</span></div><strong id="serving-token">#11</strong><small>Currently in consultation</small></article>
+          <article class="stat-card"><div class="stat-top"><span>PATIENTS AHEAD</span><span class="stat-icon violet">♧</span></div><strong id="ahead-count">3</strong><small>Including the patient being seen</small></article>
+          <article class="stat-card"><div class="stat-top"><span>DOCTOR STATUS</span><span class="stat-icon green">●</span></div><strong class="status-text" id="doctor-status">In consultation</strong><small id="status-detail">Dr. Mehta is seeing a patient</small></article>
+        </div>
+
+        <div class="content-grid">
+          <article class="panel queue-panel">
+            <div class="panel-heading"><div><h3>Queue activity</h3><p class="muted">Live progress for Dr. Mehta</p></div><span class="live-mini"><i></i> Live</span></div>
+            <div class="queue-steps" id="queue-steps">
+              <div class="queue-step done"><span class="step-number">✓</span><div><strong>Token #10</strong><small>Completed</small></div><time>5:10 PM</time></div>
+              <div class="queue-step current"><span class="step-number">11</span><div><strong>Token #11</strong><small>In consultation</small></div><time>Now</time></div>
+              <div class="queue-step next"><span class="step-number">12</span><div><strong>Token #12</strong><small>Up next</small></div><time>~12 min</time></div>
+              <div class="queue-step upcoming"><span class="step-number">13</span><div><strong>Token #13</strong><small>Waiting</small></div><time>~24 min</time></div>
+              <div class="queue-step yours"><span class="step-number">14</span><div><strong>Your token #14</strong><small>You're getting closer</small></div><time id="your-queue-time">~36 min</time></div>
+            </div>
+          </article>
+          <article class="panel visit-panel">
+            <div class="panel-heading"><div><h3>Visit details</h3><p class="muted">Your booking information</p></div><span class="calendar-icon">▦</span></div>
+            <div class="detail-row"><span>Clinic</span><strong>DocDash Heart Clinic</strong></div>
+            <div class="detail-row"><span>Specialty</span><strong>Cardiology</strong></div>
+            <div class="detail-row"><span>Consultation</span><strong>Evening OPD</strong></div>
+            <div class="detail-row"><span>Booking ID</span><strong class="booking-id">DD-2026-0014</strong></div>
+            <button class="outline-button" id="show-booking">View appointment details <span>→</span></button>
+          </article>
+        </div>
+
+        <div class="book-row">
+          <div><div class="book-icon">＋</div><div><strong>Need another appointment?</strong><span>Find a specialist and reserve your token.</span></div></div>
+          <button class="primary-button" id="open-booking">Book a token <span>→</span></button>
+        </div>
+      </section>
+
+      <section id="doctor-view" class="view">
+        <div class="welcome-row"><div><p class="muted">PHYSICIAN WORKSPACE</p><h2>Doctor console</h2></div><span class="date-chip">Dr. Mehta · Cardiology</span></div>
+        <div class="console-banner"><div><span class="status-dot"></span> EVENING OPD SESSION</div><h2>Good evening, Dr. Mehta</h2><p>Manage your patient queue and keep everyone updated.</p></div>
+        <div class="console-stats">
+          <div class="stat-card"><span class="muted">CURRENTLY SERVING</span><strong id="doctor-serving">#11</strong><small>Active consultation</small></div>
+          <div class="stat-card"><span class="muted">WAITING IN QUEUE</span><strong id="doctor-waiting">3</strong><small>Patients remaining</small></div>
+          <div class="stat-card"><span class="muted">AVG. CONSULTATION</span><strong id="doctor-average">12 <small>min</small></strong><small>Rolling average estimate</small></div>
+        </div>
+        <div class="content-grid console-grid">
+          <article class="panel control-panel">
+            <div class="panel-heading"><div><h3>Consultation controls</h3><p class="muted">Actions update the patient dashboard</p></div><span class="live-mini"><i></i> Connected</span></div>
+            <div class="current-patient"><div class="patient-avatar">P</div><div><small>NOW IN CONSULTATION</small><strong id="current-patient-name">Patient #11</strong><span>General consultation</span></div><span class="in-progress">IN PROGRESS</span></div>
+            <button class="primary-button next-button" id="next-patient">Call next patient <span>→</span></button>
+            <div class="secondary-actions"><button class="outline-button" id="complete-patient">✓ &nbsp; Mark completed</button><button class="outline-button" id="delay-patient">◷ &nbsp; Delay 10 mins</button></div>
+            <button class="skip-button" id="skip-patient">Patient absent — skip token</button>
+            <div id="doctor-toast" class="toast" role="status"></div>
+          </article>
+          <article class="panel waiting-panel">
+            <div class="panel-heading"><div><h3>Waiting list</h3><p class="muted">Today's upcoming tokens</p></div><span class="count-chip" id="waiting-count-chip">3 patients</span></div>
+            <div id="doctor-waiting-list" class="waiting-list"></div>
+          </article>
+        </div>
+        <p class="demo-note">Demo mode: changes are saved in this browser and synchronized to other open DocDash tabs.</p>
+      </section>
+
+      <section id="bookings-view" class="view">
+        <div class="welcome-row"><div><p class="muted">PATIENT MANAGEMENT</p><h2>Booked patients</h2></div><span class="date-chip" id="booking-total-chip">0 appointments</span></div>
+        <div class="booking-toolbar">
+          <div class="category-tabs" role="group" aria-label="Filter patients by category">
+            <button class="category-tab active" data-category="all">All patients <span id="count-all">0</span></button>
+            <button class="category-tab" data-category="waiting">Waiting <span id="count-waiting">0</span></button>
+            <button class="category-tab" data-category="serving">In consultation <span id="count-serving">0</span></button>
+            <button class="category-tab" data-category="completed">Completed <span id="count-completed">0</span></button>
+            <button class="category-tab" data-category="cancelled">Cancelled <span id="count-cancelled">0</span></button>
+          </div>
+          <input class="booking-search" id="booking-search" placeholder="Search name, token or booking ID…" aria-label="Search booked patients" />
+        </div>
+        <article class="panel bookings-panel">
+          <div class="panel-heading"><div><h3>Appointment directory</h3><p class="muted">Patient details and booking status</p></div><span class="live-mini"><i></i> Synced</span></div>
+          <div class="table-wrap">
+            <table class="bookings-table">
+              <thead><tr><th>PATIENT</th><th>TOKEN / BOOKING ID</th><th>DOCTOR & SPECIALTY</th><th>CLINIC / SHIFT</th><th>STATUS</th><th>ACTION</th></tr></thead>
+              <tbody id="bookings-table-body"></tbody>
+            </table>
+          </div>
+          <div class="empty-bookings" id="empty-bookings" hidden>No appointments match this category or search.</div>
+        </article>
+        <p class="demo-note">Demo data is stored in this browser. Cancelled tokens are removed from the active queue.</p>
+      </section>
+
+      <section id="board-view" class="view">
+        <div class="welcome-row"><div><p class="muted">PUBLIC DISPLAY</p><h2>Live queue board</h2></div><span class="live-pill"><i></i> UPDATING LIVE</span></div>
+        <div class="board-header"><div><span>DOC DASH HEART CLINIC</span><h2>Dr. Mehta <small>· Cardiology</small></h2><p>Evening outpatient department</p></div><div class="board-time"><span>NOW SERVING</span><strong id="board-serving">#11</strong></div></div>
+        <div class="board-grid">
+          <div class="board-current"><span>CURRENTLY IN CONSULTATION</span><strong id="board-current">#11</strong><small>Please wait for your token to be called</small></div>
+          <div class="board-next"><span>NEXT IN LINE</span><strong id="board-next">#12</strong><small>Be ready near the consultation room</small></div>
+          <div class="board-estimate"><span>AVERAGE WAIT</span><strong id="board-average">12 <small>min</small></strong><small>Per patient · live average</small></div>
+        </div>
+        <article class="panel board-list-panel"><div class="panel-heading"><div><h3>Upcoming patients</h3><p class="muted">Queue status updates automatically</p></div></div><div id="board-list" class="board-list"></div></article>
+      </section>
+      <footer>© 2026 DocDash · QueueZero Clinic Hack <span>Designed for calmer clinic visits</span></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="booking-modal" aria-hidden="true">
+    <div class="modal">
+      <button class="modal-close" id="close-booking" aria-label="Close">×</button>
+      <span class="modal-kicker">NEW APPOINTMENT</span><h2>Book your token</h2><p class="muted">Choose a specialist and reserve your place in the queue.</p>
+      <form id="booking-form">
+        <label>Patient name<input id="booking-name" value="Patient A" required /></label>
+        <label>Clinic<select id="booking-clinic"><option>DocDash Heart Clinic</option><option>City Care Medical Centre</option><option>GreenLife Health Clinic</option></select></label>
+        <label>Specialty<select id="booking-specialty"><option>Cardiology</option><option>General Medicine</option><option>Pediatrics</option><option>Orthopedics</option></select></label>
+        <label>Doctor<select id="booking-doctor"><option>Dr. Mehta</option><option>Dr. Sharma</option><option>Dr. Rao</option></select></label>
+        <label>Patient category<select id="booking-category"><option>Adult</option><option>Senior citizen</option><option>Child</option><option>Priority / urgent</option></select></label>
+        <label>Patient phone<input id="booking-phone" type="tel" placeholder="Enter contact number" /></label>
+        <button class="primary-button modal-submit" type="submit">Confirm booking <span>→</span></button>
+      </form>
+    </div>
+  </div>
+  <div class="toast global-toast" id="global-toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
